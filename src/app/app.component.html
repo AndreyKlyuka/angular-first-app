@@ -3,9 +3,9 @@
 
     <!-- <app-product [product]="products[0]"></app-product> -->
     <!-- <app-product [product]="products[1]"></app-product> -->
-
+    <p *ngIf="loading" class="text-center text-lg">loading...</p>
     <app-product
-        *ngFor="let product of products"
+        *ngFor="let product of products$ | async"
         [product]="product"
     ></app-product>
 </div>

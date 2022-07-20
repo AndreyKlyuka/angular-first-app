@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { Observable, tap } from 'rxjs'
 import { IProduct } from './models/product'
-import { products as data } from './data/products'
-// import { ProductService } from './services/product.service'
+import { ProductService } from './services/product.service'
 
 @Component({
     selector: 'app-root',
@@ -10,12 +10,20 @@ import { products as data } from './data/products'
 })
 export class AppComponent implements OnInit {
     title = 'app works!'
+    // products: IProduct[] = []
+    products$: Observable<IProduct[]>
+    loading: boolean = false
 
-    products: IProduct[] = data
-
-    // constructor(private productsService: ProductService) {}
+    constructor(private productsService: ProductService) {}
 
     ngOnInit(): void {
-        throw new Error('Method not implemented.')
+        this.loading = true
+        // this.productsService.getData().subscribe((products) => {
+        //     this.products = products
+        //     this.loading = false
+        // })
+        this.products$ = this.productsService
+            .getData()
+            .pipe(tap(() => (this.loading = false)))
     }
 }
