@@ -14,7 +14,7 @@ export class ProductService {
         return this.http
             .get<IProduct[]>('https://fakestoreapi.com/products', {
                 params: new HttpParams({
-                    fromObject: { limit: 20 },
+                    fromObject: { limit: 5 },
                 }),
             })
             .pipe(catchError(this.errorHandler.bind(this)))
