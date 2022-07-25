@@ -12,23 +12,22 @@ import { ProductService } from './services/product.service'
 export class AppComponent implements OnInit {
     title = 'app works!'
     // products: IProduct[] = []
-    products$: Observable<IProduct[]>
+    // products$: Observable<IProduct[]>
     loading: boolean = false
     term = ''
 
     constructor(
-        private productsService: ProductService,
+        public productsService: ProductService,
         public modalService: ModalService
     ) {}
 
     ngOnInit(): void {
         this.loading = true
-        // this.productsService.getData().subscribe((products) => {
-        //     this.products = products
-        //     this.loading = false
-        // })
-        this.products$ = this.productsService
-            .getData()
-            .pipe(tap(() => (this.loading = false)))
+        this.productsService.getData().subscribe(() => {
+            this.loading = false
+        })
+        // this.products$ = this.productsService
+        //     .getData()
+        //     .pipe(tap(() => (this.loading = false)))
     }
 }

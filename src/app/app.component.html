@@ -10,9 +10,11 @@
     />
     <p *ngIf="loading" class="text-center text-lg">loading...</p>
 
-    <div *ngIf="products$ | async as products">
+    <div *ngIf="productsService.products">
         <app-product
-            *ngFor="let product of products | filterProducts: term"
+            *ngFor="
+                let product of productsService.products | filterProducts: term
+            "
             [product]="product"
         ></app-product>
     </div>
