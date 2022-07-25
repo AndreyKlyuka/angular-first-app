@@ -11,7 +11,8 @@
         class="text-red-600 font-medium mb-2"
         *ngIf="title.errors?.minlength && title.touched"
     >
-        min lenght should be 6 Now {{ title.value.length }}
+        Minimal length should be 6 symbols <br />
+        Now {{ title.value.length }} symbols
     </p>
 
     <button type="submit" class="py-2 px-4 bg-blue-600 text-white">
